@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ContactList_MVVM.ViewModels"
+             x:Class="ContactList_MVVM.Views.ContactsPage"
+             Title="Contacts">
+
+    <Grid RowDefinitions="*, Auto">
+        <CollectionView Grid.Row="0" 
+                        ItemsSource="{Binding Contacts}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding ShowContactDetailsCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="No contacts available" FontSize="18" TextColor="Gray" />
+                    <Label Text="Add a new contact to get started" FontSize="14" TextColor="Gray" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10" BorderColor="LightGray" HasShadow="True">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*" Padding="5">
+                            <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                            <Label Grid.Row="1" Text="{Binding Email}" FontSize="14" TextColor="DodgerBlue" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1" 
+                Text="Add New Contact" 
+                Command="{Binding AddContactCommand}" 
+                Margin="20" 
+                BackgroundColor="DodgerBlue" 
+                TextColor="White" />
+    </Grid>
+</ContentPage>

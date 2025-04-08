@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ContactList_MVVM.ViewModels"
+             x:Class="ContactList_MVVM.Views.ContactDetailsPage"
+             Title="Contact Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EnableEditingCommand}" IsVisible="{Binding IsEditing, Converter={StaticResource InvertedBoolConverter}}" />
+        <ToolbarItem Text="Save" Command="{Binding SaveChangesCommand}" IsVisible="{Binding IsEditing}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Frame BorderColor="LightGray" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+                    <VerticalStackLayout>
+                        <Label Text="Name" FontAttributes="Bold" />
+                        <Entry Text="{Binding Contact.Name}" IsEnabled="{Binding IsEditing}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Email" FontAttributes="Bold" />
+                        <Entry Text="{Binding Contact.Email}" IsEnabled="{Binding IsEditing}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Phone Number" FontAttributes="Bold" />
+                        <Entry Text="{Binding Contact.Phone}" IsEnabled="{Binding IsEditing}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Description" FontAttributes="Bold" />
+                        <Editor Text="{Binding Contact.Description}" HeightRequest="100" IsEnabled="{Binding IsEditing}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Back to Contacts" 
+                    Command="{Binding GoBackCommand}" 
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

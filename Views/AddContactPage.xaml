@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ContactList_MVVM.ViewModels"
+             x:Class="ContactList_MVVM.Views.AddContactPage"
+             Title="Add New Contact">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center">
+            <Label Text="Add New Contact" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,20"/>
+
+            <Frame BorderColor="LightGray" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+                    <VerticalStackLayout>
+                        <Label Text="Name *" FontAttributes="Bold"/>
+                        <Entry Text="{Binding Name}" Placeholder="Enter name" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Email *" FontAttributes="Bold"/>
+                        <Entry Text="{Binding Email}" Placeholder="Enter email" Keyboard="Email" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Phone Number" FontAttributes="Bold"/>
+                        <Entry Text="{Binding Phone}" Placeholder="Enter phone number" Keyboard="Telephone" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Description" FontAttributes="Bold"/>
+                        <Editor Text="{Binding Description}" Placeholder="Enter description" HeightRequest="100" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Save Contact" Command="{Binding SaveContactCommand}" BackgroundColor="DodgerBlue" TextColor="White" />
+
+            <Label Text="* Required fields" FontSize="12" TextColor="Gray" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
